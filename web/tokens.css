@@ -1,0 +1,156 @@
+/* GENERATED FILE — do not edit.
+   Source: tokens/tokens.json — regenerate with `node scripts/build-tokens.mjs` */
+
+:root {
+
+  /* Typography — families */
+  --font-display: "Jost Variable", "Jost", "Avenir Next", "Century Gothic", system-ui, sans-serif;
+  --font-display-weight: 600;
+  --font-ui: "Jost Variable", "Jost", "Avenir Next", "Century Gothic", system-ui, sans-serif;
+  --font-ui-weight: 400;
+  --font-body: "Spectral", "Iowan Old Style", "Palatino", Georgia, serif;
+  --font-body-weight: 400;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-mono-weight: 400;
+
+  /* Typography — scale */
+  --text-3xs: 0.6875rem;
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.3125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.875rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 3.75rem;
+
+  /* Typography — line height & tracking */
+  --leading-display: 1.1;
+  --leading-heading: 1.25;
+  --leading-ui: 1.45;
+  --leading-body: 1.65;
+  --leading-tight: 1.2;
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.01em;
+  --tracking-normal: 0em;
+  --tracking-eyebrow: 0.12em;
+
+  /* Spacing */
+  --space-0: 0rem;
+  --space-1: 0.125rem;
+  --space-2: 0.25rem;
+  --space-3: 0.5rem;
+  --space-4: 0.75rem;
+  --space-5: 1rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+  --space-10: 6rem;
+
+  /* Radius & borders */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+  --border-hairline: 1px;
+  --border-thick: 2px;
+
+  /* Palette */
+  --color-neutral-0: #FFFFFF;
+  --color-neutral-50: #FAFAF8;
+  --color-neutral-100: #F2F2EF;
+  --color-neutral-200: #E4E3DE;
+  --color-neutral-300: #CFCEC8;
+  --color-neutral-400: #A9A8A1;
+  --color-neutral-500: #78776F;
+  --color-neutral-600: #575650;
+  --color-neutral-700: #3D3C37;
+  --color-neutral-800: #272621;
+  --color-neutral-900: #181713;
+  --color-neutral-950: #0F0E0B;
+  --color-accent-50: #FBF5EC;
+  --color-accent-100: #F3E5D0;
+  --color-accent-200: #E4C69C;
+  --color-accent-300: #D2A567;
+  --color-accent-400: #B9803A;
+  --color-accent-500: #8C5921;
+  --color-accent-600: #73481B;
+  --color-accent-700: #5A3815;
+  --color-accent-800: #402710;
+  --color-accent-900: #2A1A0A;
+  --color-success: #3F6F44;
+  --color-warning: #B9803A;
+  --color-danger: #9E3B2C;
+  --color-info: #3A5F7D;
+
+  /* Motion */
+  --motion-duration-fast: 120ms;
+  --motion-duration-base: 200ms;
+  --motion-duration-slow: 320ms;
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0.1, 1);
+  --motion-ease-enter: cubic-bezier(0, 0, 0.1, 1);
+  --motion-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Constraints */
+  --ui-font-min-size: 13px;
+  --body-measure: 68ch;
+  --touch-target-min: 44px;
+
+  /* Semantic — light (default) */
+  --bg: #FFFFFF;
+  --bg-subtle: #FAFAF8;
+  --bg-muted: #F2F2EF;
+  --surface: #FFFFFF;
+  --border: #E4E3DE;
+  --border-strong: #CFCEC8;
+  --fg-primary: #181713;
+  --fg-secondary: #575650;
+  --fg-muted: #78776F;
+  --fg-inverse: #FFFFFF;
+  --accent: #8C5921;
+  --accent-hover: #73481B;
+  --accent-subtle: #FBF5EC;
+  --focus-ring: #B9803A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0F0E0B;
+    --bg-subtle: #181713;
+    --bg-muted: #272621;
+    --surface: #181713;
+    --border: #272621;
+    --border-strong: #3D3C37;
+    --fg-primary: #F2F2EF;
+    --fg-secondary: #A9A8A1;
+    --fg-muted: #78776F;
+    --fg-inverse: #0F0E0B;
+    --accent: #D2A567;
+    --accent-hover: #E4C69C;
+    --accent-subtle: #2A1A0A;
+    --focus-ring: #D2A567;
+  }
+}
+
+[data-theme="dark"] {
+  --bg: #0F0E0B;
+  --bg-subtle: #181713;
+  --bg-muted: #272621;
+  --surface: #181713;
+  --border: #272621;
+  --border-strong: #3D3C37;
+  --fg-primary: #F2F2EF;
+  --fg-secondary: #A9A8A1;
+  --fg-muted: #78776F;
+  --fg-inverse: #0F0E0B;
+  --accent: #D2A567;
+  --accent-hover: #E4C69C;
+  --accent-subtle: #2A1A0A;
+  --focus-ring: #D2A567;
+}

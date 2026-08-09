@@ -1,0 +1,10 @@
+# Fonts are fetched, not vendored — keeps the repo text-only and diffable.
+# Run: bash scripts/fetch-fonts.sh
+fonts/
+
+.DS_Store
+node_modules/
+*.log
+
+# Claude Code per-machine settings — CLAUDE.md is the shared part.
+.claude/settings.local.json

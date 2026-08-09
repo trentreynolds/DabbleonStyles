@@ -1,0 +1,45 @@
+/* Font loading for web. Self-hosted via Fontsource — no third-party request,
+   works offline, and the exact files ship with your build.
+
+   Install:
+     npm i @fontsource-variable/jost @fontsource/spectral
+
+   Then in your root layout / entry file:
+     import "@fontsource-variable/jost";
+     import "@fontsource/spectral/400.css";
+     import "@fontsource/spectral/400-italic.css";
+     import "@fontsource/spectral/600.css";
+     import "./tokens.css";
+     import "./base.css";
+
+   Do NOT link fonts.googleapis.com. It adds a render-blocking third-party
+   request, leaks visitor IPs to Google, and gives you no version pinning.
+
+   If you prefer to serve the files yourself rather than via npm, run
+   scripts/fetch-fonts.sh and use the @font-face blocks below instead. */
+
+/*
+@font-face {
+  font-family: "Jost Variable";
+  src: url("/fonts/Jost[wght].woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spectral";
+  src: url("/fonts/Spectral-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Spectral";
+  src: url("/fonts/Spectral-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+*/

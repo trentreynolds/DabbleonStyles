@@ -1,0 +1,102 @@
+/* Base layer — the minimum needed for tokens to actually take effect.
+   Import after tokens.css and fonts.css. Framework-agnostic; works with
+   plain CSS, Astro, Next, or as a Tailwind base layer. */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  font-synthesis-weight: none; /* never fake a weight that isn't loaded */
+}
+
+/* Headings use the display face and tighter metrics. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); letter-spacing: var(--tracking-heading); }
+h4 { font-size: var(--text-lg); letter-spacing: var(--tracking-heading); }
+h5, h6 { font-size: var(--text-md); letter-spacing: var(--tracking-heading); }
+
+p {
+  margin: 0 0 var(--space-5);
+  max-width: var(--body-measure);
+  text-wrap: pretty;
+}
+
+/* UI chrome uses the sans. Never below --ui-font-min-size. */
+button, input, select, textarea, label, th, nav, .ui {
+  font-family: var(--font-ui);
+  font-size: max(var(--text-sm), var(--ui-font-min-size));
+  line-height: var(--leading-ui);
+}
+
+button, [role="button"] {
+  min-height: var(--touch-target-min);
+  padding: var(--space-3) var(--space-5);
+  border: var(--border-hairline) solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--fg-primary);
+  cursor: pointer;
+  transition: background var(--motion-duration-fast) var(--motion-ease-standard),
+              border-color var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+button:hover { background: var(--bg-muted); }
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: var(--border-thick) solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Anything with numbers in a column gets tabular figures. */
+table, .tabular, [data-tabular] {
+  font-variant-numeric: tabular-nums;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.925em;
+}
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+hr {
+  border: 0;
+  border-top: var(--border-hairline) solid var(--border);
+  margin: var(--space-7) 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
