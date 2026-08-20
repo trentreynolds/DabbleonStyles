@@ -84,7 +84,7 @@ is one edit in `tokens.json`.
 ---
 
 ## 0006 — Inverse surface tokens
-**Date:** 2026-08 · **Status:** proposed
+**Date:** 2026-08 · **Status:** adopted
 
 Add a surface that is deliberately the opposite weight to the page, plus the
 foreground tokens that go on it.
@@ -130,7 +130,7 @@ That would be a `surfaceRaised`, not a change here.
 ---
 
 ## 0007 — Per-world accent, starting with Artist Laser
-**Date:** 2026-08 · **Status:** proposed
+**Date:** 2026-08 · **Status:** adopted
 
 Add a second accent ramp and a mechanism for selecting it per world, rather than
 changing the shared accent.
@@ -181,9 +181,15 @@ nothing downstream has to special-case a world.
 AA on white, so every link and button in that world would have been below
 threshold from day one.
 
-**Open:** whether `data-world` is the right selector, or whether worlds should be
-a class. The attribute reads better in devtools and cannot collide with a utility
-class, but it is a call worth making once rather than per page.
+**As built:** `worlds` is a section in `tokens.json`, so a world is data rather
+than hand-written CSS. `build-tokens.mjs` emits the `[data-world]` block once per
+theme scope, meaning a world tracks light and dark like everything else. Verified
+in the browser: `--accent` resolves to `#8C5921` outside the world and `#BB2F2F`
+inside it, and the measured contrast matches the table above exactly — 8.59:1 for
+the accent on the dark ground, 13.51:1 for hero text on the inverse band.
+
+The selector is an attribute rather than a class: it reads better in devtools and
+cannot collide with a utility class.
 
 **Revisit if:** a third world needs an accent. Two ramps is a pair; four is a
 system that should probably generate ramps from a single hue input instead.

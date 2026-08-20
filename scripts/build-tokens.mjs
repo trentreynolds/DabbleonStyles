@@ -46,8 +46,10 @@ for (const [k, v] of Object.entries(t.borderWidth)) cssLines.push(`  --border-${
 
 cssLines.push("\n  /* Palette */");
 for (const [group, val] of Object.entries(t.color)) {
-  if (typeof val === "string") cssLines.push(`  --color-${group}: ${val};`);
-  else for (const [step, hex] of Object.entries(val)) cssLines.push(`  --color-${group}-${step}: ${hex};`);
+  // kebab so a camelCase group like accentLaser emits --color-accent-laser-*.
+  // No-op for the single-word groups that already exist.
+  if (typeof val === "string") cssLines.push(`  --color-${kebab(group)}: ${val};`);
+  else for (const [step, hex] of Object.entries(val)) cssLines.push(`  --color-${kebab(group)}-${step}: ${hex};`);
 }
 
 cssLines.push("\n  /* Motion */");
@@ -76,6 +78,33 @@ cssLines.push('[data-theme="dark"] {');
 for (const [k, ref] of Object.entries(t.semantic.dark))
   cssLines.push(`  --${kebab(k)}: ${deref(ref)};`);
 cssLines.push("}");
+
+// Worlds — decision 0007. A world reassigns only the accent group, so every
+// call site keeps using --accent and nothing has to special-case a brand.
+// Emitted once per theme scope so a world tracks light/dark like everything
+// else.
+if (t.worlds) {
+  const worldBlock = (sel, vars, indent = "") => {
+    cssLines.push(`${indent}${sel} {`);
+    for (const [k, ref] of Object.entries(vars))
+      cssLines.push(`${indent}  --${kebab(k)}: ${deref(ref)};`);
+    cssLines.push(`${indent}}`);
+  };
+
+  cssLines.push("\n/* Worlds */");
+  for (const [world, themes] of Object.entries(t.worlds))
+    worldBlock(`[data-world="${world}"]`, themes.light);
+
+  cssLines.push("\n@media (prefers-color-scheme: dark) {");
+  for (const [world, themes] of Object.entries(t.worlds))
+    worldBlock(`[data-world="${world}"]:not([data-theme="light"])`, themes.dark, "  ");
+  cssLines.push("}\n");
+
+  for (const [world, themes] of Object.entries(t.worlds)) {
+    worldBlock(`[data-theme="dark"] [data-world="${world}"]`, themes.dark);
+    worldBlock(`[data-world="${world}"][data-theme="dark"]`, themes.dark);
+  }
+}
 
 writeFileSync(join(root, "web/tokens.css"), cssLines.join("\n") + "\n");
 

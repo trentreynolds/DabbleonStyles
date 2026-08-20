@@ -96,6 +96,16 @@ public enum DS {
         public static let warning = Color(hex: "#B9803A")
         public static let danger = Color(hex: "#9E3B2C")
         public static let info = Color(hex: "#3A5F7D")
+        public static let accentLaser50 = Color(hex: "#FDF7F7")
+        public static let accentLaser100 = Color(hex: "#F9E9E9")
+        public static let accentLaser200 = Color(hex: "#F4D4D4")
+        public static let accentLaser300 = Color(hex: "#E59999")
+        public static let accentLaser400 = Color(hex: "#D75D5D")
+        public static let accentLaser500 = Color(hex: "#BB2F2F")
+        public static let accentLaser600 = Color(hex: "#A12828")
+        public static let accentLaser700 = Color(hex: "#882222")
+        public static let accentLaser800 = Color(hex: "#6D1B1B")
+        public static let accentLaser900 = Color(hex: "#561515")
     }
 
     // MARK: - Semantic colors (adaptive)
@@ -114,5 +124,9 @@ public enum DS {
         public static let accentHover = Color(light: "#73481B", dark: "#E4C69C")
         public static let accentSubtle = Color(light: "#FBF5EC", dark: "#2A1A0A")
         public static let focusRing = Color(light: "#B9803A", dark: "#D2A567")
+        public static let surfaceInverse = Color(light: "#0F0E0B", dark: "#272621")
+        public static let fgOnInverse = Color(light: "#FFFFFF", dark: "#F2F2EF")
+        public static let fgOnInverseMuted = Color(light: "#A9A8A1", dark: "#A9A8A1")
+        public static let borderOnInverse = Color(light: "#3D3C37", dark: "#575650")
     }
 }
