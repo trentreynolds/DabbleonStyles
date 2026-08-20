@@ -106,6 +106,8 @@ public enum DS {
         public static let accentLaser700 = Color(hex: "#882222")
         public static let accentLaser800 = Color(hex: "#6D1B1B")
         public static let accentLaser900 = Color(hex: "#561515")
+        public static let pageGradientfrom = Color(hex: "#F2F1F1")
+        public static let pageGradientto = Color(hex: "#DAD9D9")
     }
 
     // MARK: - Semantic colors (adaptive)
@@ -128,5 +130,7 @@ public enum DS {
         public static let fgOnInverse = Color(light: "#FFFFFF", dark: "#F2F2EF")
         public static let fgOnInverseMuted = Color(light: "#A9A8A1", dark: "#A9A8A1")
         public static let borderOnInverse = Color(light: "#3D3C37", dark: "#575650")
+        public static let bgGradientFrom = Color(light: "#F2F1F1", dark: "#181713")
+        public static let bgGradientTo = Color(light: "#DAD9D9", dark: "#0F0E0B")
     }
 }

@@ -98,6 +98,8 @@
   --color-accent-laser-700: #882222;
   --color-accent-laser-800: #6D1B1B;
   --color-accent-laser-900: #561515;
+  --color-page-gradient-from: #F2F1F1;
+  --color-page-gradient-to: #DAD9D9;
 
   /* Motion */
   --motion-duration-fast: 120ms;
@@ -131,10 +133,12 @@
   --fg-on-inverse: #FFFFFF;
   --fg-on-inverse-muted: #A9A8A1;
   --border-on-inverse: #3D3C37;
+  --bg-gradient-from: #F2F1F1;
+  --bg-gradient-to: #DAD9D9;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0F0E0B;
     --bg-subtle: #181713;
     --bg-muted: #272621;
@@ -153,6 +157,8 @@
     --fg-on-inverse: #F2F2EF;
     --fg-on-inverse-muted: #A9A8A1;
     --border-on-inverse: #575650;
+    --bg-gradient-from: #181713;
+    --bg-gradient-to: #0F0E0B;
   }
 }
 
@@ -175,6 +181,8 @@
   --fg-on-inverse: #F2F2EF;
   --fg-on-inverse-muted: #A9A8A1;
   --border-on-inverse: #575650;
+  --bg-gradient-from: #181713;
+  --bg-gradient-to: #0F0E0B;
 }
 
 /* Worlds */

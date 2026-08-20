@@ -68,7 +68,10 @@ for (const [k, ref] of Object.entries(t.semantic.light))
 cssLines.push("}\n");
 
 cssLines.push("@media (prefers-color-scheme: dark) {");
-cssLines.push("  :root {");
+// :not([data-theme="light"]) so an explicit light choice wins. Same specificity
+// as a bare :root, and the media query comes later in the file, so without the
+// guard data-theme="light" would be silently ignored.
+cssLines.push('  :root:not([data-theme="light"]) {');
 for (const [k, ref] of Object.entries(t.semantic.dark))
   cssLines.push(`    --${kebab(k)}: ${deref(ref)};`);
 cssLines.push("  }");

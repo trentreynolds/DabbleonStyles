@@ -193,3 +193,41 @@ cannot collide with a utility class.
 
 **Revisit if:** a third world needs an accent. Two ramps is a pair; four is a
 system that should probably generate ramps from a single hue input instead.
+
+---
+
+## 0008 — Page gradient, and explicit light beats the OS
+**Date:** 2026-08 · **Status:** adopted
+
+Two palette entries and a semantic pair for a vertical page gradient:
+
+```
+color.pageGradient.from  #F2F1F1      semantic.light.bgGradientFrom
+color.pageGradient.to    #DAD9D9      semantic.light.bgGradientTo
+```
+
+Plus a one-line change in `build-tokens.mjs`: the dark media query now emits
+`:root:not([data-theme="light"])` rather than a bare `:root`.
+
+**Why the gradient is its own palette group:** both stops are pure neutral greys
+— R, G and B within one step of each other. Every existing neutral is warm, with
+a slight olive bias; `#F2F2EF` has more green than blue on purpose. Folding
+these into `color.neutral` would put two off-key values in the middle of a ramp
+that is deliberately consistent, and the nearest existing step to `#DAD9D9` is
+15 units away, so it is not a near-duplicate either. They are specified values
+from Trent, not derived ones.
+
+**Why the media query needed guarding:** a bare `:root` inside
+`@media (prefers-color-scheme: dark)` has the same specificity as the `:root`
+that defines the light theme, and it comes later in the file, so it wins on
+source order. That made `data-theme="light"` inert — a project could not opt out
+of following the OS. With the guard, an explicit choice wins in both directions,
+which is what the three-state pattern requires: OS-follows-by-default, plus a
+stamped choice that overrides it either way.
+
+**Dark values are still emitted** (`neutral.900` → `neutral.950`), so the token
+set stays symmetric for other projects on this system. dabbleon.com pins light
+at the document level; that is a per-project decision, not a system one.
+
+**Revisit if:** a project wants a theme toggle rather than a pin. The tokens
+already support it — only a control and a persistence choice are missing.
