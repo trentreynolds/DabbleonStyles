@@ -13,8 +13,9 @@ own `CLAUDE.md`), these rules apply to any UI work in that project.
    quietly add a token. Adding to the system is a decision that goes through
    `tokens/tokens.json` and gets a line in `docs/decisions.md`.
 3. **Never hand-edit generated files.** `web/tokens.css` and
-   `apple/DesignTokens.swift` are output. Edit `tokens/tokens.json`, then run
-   `node scripts/build-tokens.mjs`.
+   `apple/DesignTokens.swift` are output. Change `tokens/tokens.json` — by
+   pulling from Figma (`scripts/figma/apply.mjs`) or by editing it — then run
+   `node scripts/build-tokens.mjs`. `figma/push.js` is generated too.
 4. **UI text never goes below 13px** (`--ui-font-min-size` / `DS.Constraint.uiFontMinSize`).
    Jost's counters close up below it. If the layout seems to need smaller text,
    say so rather than shrinking it.
@@ -25,6 +26,27 @@ own `CLAUDE.md`), these rules apply to any UI work in that project.
    sentence → `body` (Spectral). Code and IDs → `mono`.
 7. **No browser storage in artifacts.** (localStorage / sessionStorage do not
    work in the Claude artifact sandbox.)
+
+## Figma is where design happens
+
+Trent designs in the Dabbleon Styles Figma library; this repo is what code
+reads. Follow `docs/figma.md` exactly. In short:
+
+- **"Pull my Figma changes"** → run `scripts/figma/read.js` in the Figma file
+  with `use_figma`, save the JSON to `figma/snapshot.json`, run
+  `node scripts/figma/apply.mjs` (`--dry-run` first if unsure), then push back
+  and `--record-push`. Open a PR with `figma/last-sync.md` as the body and fill
+  in the *why* of the decision entry it drafted.
+- **"Push to Figma"** → `node scripts/figma/build-push.mjs`, run `figma/push.js`
+  with `use_figma`, then `node scripts/figma/apply.mjs --record-push`. If the
+  push stops with a drift list, Figma has unpulled edits: pull first. Never
+  `--force` without Trent saying to discard them.
+- **Conflicts and new tokens are decisions.** apply.mjs reports them and changes
+  nothing; ask which wins (`--prefer=`) or whether to add (`--accept-new`).
+- **Element changes** ("apply the Project Card changes") are not a sync: read
+  the component with the Figma MCP tools, change the React/CSS using tokens
+  only, and show the site at 390 / 768 / 1280 beside the Figma frames.
+- Don't edit `figma/baseline.json` by hand — it is what makes the merge three-way.
 
 ## Preferred patterns
 

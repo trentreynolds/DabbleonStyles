@@ -12,8 +12,9 @@ commercial use, self-hosting, and app embedding. See [`LICENSES.md`](LICENSES.md
 ## Layout
 
 ```
-tokens/tokens.json      ← source of truth. Edit this.
+tokens/tokens.json      ← what code reads. Values are authored in Figma and pulled here.
 scripts/build-tokens.mjs  → generates the two files below
+scripts/figma/            ← Figma sync: pull (apply.mjs), push (build-push.mjs), self-test
 scripts/fetch-fonts.sh    → downloads fonts + licences from upstream
 
 web/tokens.css          ← GENERATED. CSS custom properties, light + dark.
@@ -26,9 +27,18 @@ apple/Typography.swift   ← hand-written: DS.Font, DS.TextStyle, Color helpers
 docs/getting-started.md ← wiring it into a project
 docs/typography.md      ← the type decisions and the metrics behind them
 docs/decisions.md       ← running log of what was decided and why
+docs/figma.md           ← how Figma and this repo stay in step
+figma/                  ← sync state: baseline, last report, component text styles
 
 CLAUDE.md               ← rules for Claude Code when building UI
 ```
+
+## Designing
+
+Design in the [Dabbleon Styles Figma library](https://www.figma.com/design/JPRTz3aj26m1mMIKfyG6it).
+Colour and size changes come back here with a pull; element redesigns come back
+as code changes Claude makes from the Figma component. See
+[`docs/figma.md`](docs/figma.md).
 
 ## Quick start
 
@@ -53,8 +63,8 @@ touching a single call site.
 ## Rules that matter most
 
 - Never write a raw hex, pixel, or duration value — use a token.
-- If no token fits, that's a system decision: change `tokens.json`, log it in
-  `docs/decisions.md`. Don't invent a nearby value.
+- If no token fits, that's a system decision: add it (in Figma, then pull, or in
+  `tokens.json`), log it in `docs/decisions.md`. Don't invent a nearby value.
 - UI text never below 13px. Jost's counters close up.
 - Two weights per family: 400 and 600.
 - Semantic tokens (`--fg-primary`, `--surface`) at call sites, never palette

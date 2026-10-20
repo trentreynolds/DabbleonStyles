@@ -8,3 +8,6 @@ node_modules/
 
 # Claude Code per-machine settings — CLAUDE.md is the shared part.
 .claude/settings.local.json
+
+# Figma sync: the raw export is regenerated on every pull
+figma/snapshot.json

@@ -231,3 +231,37 @@ at the document level; that is a per-project decision, not a system one.
 
 **Revisit if:** a project wants a theme toggle rather than a pin. The tokens
 already support it — only a control and a persistence choice are missing.
+
+---
+
+## 0009 — Figma is the authoring surface; the repo is what code reads
+**Date:** 2026-10 · **Status:** adopted
+
+Design work moves to a Figma library (Dabbleon Styles). Colours, spacing, radii,
+borders and font sizes are Figma variables; `tokens.json` stays the file code
+reads, and changes flow into it by a pull (`scripts/figma/apply.mjs`). Elements
+are Figma components; changes to them come back as code edits made from the
+Figma component, reviewed in a PR.
+
+**Why:** Trent refines by looking. Describing changes in prompts and then
+judging a rendered preview was slow and lost detail; Figma lets him adjust
+directly and see every theme and width at once. Keeping `tokens.json` as the
+thing code reads means nothing downstream changes — DabbleonCom's submodule,
+the generator and the Swift layer all work as before.
+
+**How it stays safe:** the pull is a three-way merge against
+`figma/baseline.json`, so an edit in Figma and an edit in code can never
+silently overwrite each other; conflicts, raw colours on roles and new tokens
+are reported and wait for a decision. The push refuses to overwrite Figma
+edits that were never pulled. Both directions share one mapping
+(`scripts/figma/tokens-map.mjs`), joined on CSS custom property names.
+
+**Rejected:** Figma Code Connect (not on the Professional plan; not needed when
+Claude reads components directly). Tokens Studio-style JSON export plugins
+(another tool and file format to keep in step, for no gain over reading
+variables directly).
+
+**Revisit if:** more than one person designs in the file at once, or element
+changes become frequent enough that a mechanical component → code path is
+worth building.
+
